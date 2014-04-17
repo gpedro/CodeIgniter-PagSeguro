@@ -8,13 +8,13 @@ class Demo extends CI_Controller {
 		$this->load->library('pagsegurolibrary/pagseguro', 'pagseguro');
 
 		/* Página de Retorno */
-		$pgRetorno = '/payment/callback';
+		$pgRetorno = base_url('/payment/callback');
 
 		/* Dados Compra */
 		$pgCompra = array(
 			array(
-				'description' => $lote['nomeTipoLote'],
-				'amount' => $lote['precoLote'],
+				'description' => 'Doação pela contribuição',
+				'amount' => 1.00
 				'quantity' => 1
 				)
 			);
