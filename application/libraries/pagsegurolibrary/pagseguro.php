@@ -104,20 +104,18 @@ class Pagseguro
 			$shipping['pais']
 			);
 
-	}
+		$requestPayment->setRedirectURL($redirect);
+		$requestPayment->setMaxAge(86400 * 3);
 
-	$requestPayment->setRedirectURL($redirect);
-	$requestPayment->setMaxAge(86400 * 3);
-
-	try
-	{
-		return $requestPayment->register($this->getCredentials());
+		try
+		{
+			return $requestPayment->register($this->getCredentials());
+		}
+		catch (PagSeguroServiceException $e)
+		{
+			show_error('PagSeguroLibrary: '. $e->getMessage());	
+		}
 	}
-	catch (PagSeguroServiceException $e)
-	{
-		show_error('PagSeguroLibrary: '. $e->getMessage());	
-	}
-
 }
 
 
