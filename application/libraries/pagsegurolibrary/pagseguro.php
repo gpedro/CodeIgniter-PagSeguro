@@ -111,9 +111,14 @@ class Pagseguro
 		{
 			return $requestPayment->register($this->getCredentials());
 		}
+		
 		catch (PagSeguroServiceException $e)
 		{
-			show_error('PagSeguroLibrary: '. $e->getMessage());	
+	   		foreach ($e->getErrors() as $key => $error)
+	   		{  
+	       			echo $error->getCode();
+	       			echo $error->getMessage();
+			}	
 		}
 	}
 }
